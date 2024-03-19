@@ -13,3 +13,13 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_TCP_PORT: 3309
+
+  app:   # Service名
+    image: node:latest  # Dockerイメージを指定します。
+    container_name: api   # Dockerコンテナ名 
+    working_dir: /usr/src/app  # 作業ディレクトリの指定
+    volumes:
+    - type: bind   # マウントタイプ
+      source: ./app   # マウント先
+      target: /usr/src/app   # マウントされるコンテナのパス
+    tty: true   # コンテナを起動させ続ける。
