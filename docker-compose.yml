@@ -1,0 +1,15 @@
+version: "3"
+services:
+  mysql:
+    container_name: ${container_name}
+    image: mysql:latest
+    volumes:
+      - ./build/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3309:3309"
+    expose:
+      - 3309
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_TCP_PORT: 3309
