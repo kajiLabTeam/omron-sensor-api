@@ -1,8 +1,14 @@
+OMRON-sensor-api
+===
+
+# 使い方
+
+## 開発環境起動
 ```
-npm install
-npm run dev
+make dev
 ```
 
+## 閉じる
 ```
-open http://localhost:3000
+make down
 ```

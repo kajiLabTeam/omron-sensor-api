@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    container_name: ${container_name}
+    container_name: mysql
     image: mysql:latest
     volumes:
       - ./build/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
@@ -17,9 +17,14 @@ services:
   app:   # Service名
     image: node:latest  # Dockerイメージを指定します。
     container_name: api   # Dockerコンテナ名 
-    working_dir: /usr/src/app  # 作業ディレクトリの指定
+    working_dir: /app  # 作業ディレクトリの指定
+    ports:
+      - "3000:3000"
     volumes:
     - type: bind   # マウントタイプ
-      source: ./app   # マウント先
-      target: /usr/src/app   # マウントされるコンテナのパス
+      source: ./omron-sensor-api   # マウント元
+      target: /app   # マウントされるコンテナのパス
+    - /app/node_modules # node_modulesをマウントしない
     tty: true   # コンテナを起動させ続ける。
+    command: sh -c "yarn install && yarn run dev"   # コンテナ起動時に実行するコマンド
+
