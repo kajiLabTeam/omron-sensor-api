@@ -1,1 +1,8 @@
-# omron-sensor-api
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
