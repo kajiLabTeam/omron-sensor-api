@@ -14,8 +14,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_TCP_PORT: 3309
 
-  app:   # Service名
-    image: node:latest  # Dockerイメージを指定します。
+  api:   # Service名
+    image: node:21  # Dockerイメージを指定します。
     container_name: api   # Dockerコンテナ名 
     working_dir: /app  # 作業ディレクトリの指定
     ports:
