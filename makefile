@@ -7,18 +7,18 @@ down:
 # Dockerコンテナを立ち上げる・ログを表示
 dev:
 	docker compose up -d
-	docker compose logs app -f
+	docker compose logs api -f
 
 # ログを表示
 log:
-	docker compose logs app -f
+	docker compose logs api -f
 
 # MySQLに接続
 mysql:
 	docker exec -it mysql mysql -u $(MYSQL_USER) --password=$(MYSQL_ROOT_PASSWORD)
 
 # APIコンテナに入る
-app:
+api:
 	docker exec -it api bash
 
 # Prisma Studioを立ち上げる
