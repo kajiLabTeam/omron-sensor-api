@@ -19,6 +19,7 @@ export class DBApi {
                 data: {
                     id: data.id,
                     time_measured: data.time_measured,
+                    area: data.area,
                     temperature: data.temperature,
                     relative_humidity: data.relative_humidity,
                     ambient_light: data.ambient_light,

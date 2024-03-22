@@ -23,8 +23,9 @@ app.get('/db_test', async (c) => {
 app.post('/db_test', async (c) => {
   const db = new DBApi()
   const data:SensorData = {
-    id: 1,
+    id: 2,
     time_measured: '2021-08-01 00:00:00',
+    area: 'sysken',
     temperature: 25.0,
     relative_humidity: 50.0,
     ambient_light: 100.0,

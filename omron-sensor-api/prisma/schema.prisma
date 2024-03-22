@@ -16,6 +16,7 @@ datasource db {
 
 model sensor_data {
   id                     Int      @id @default(autoincrement())
+  area                   String
   time_measured          String
   temperature            Float
   relative_humidity      Float
