@@ -20,6 +20,7 @@ services:
     working_dir: /app  # 作業ディレクトリの指定
     ports:
       - "3000:3000"
+      - "5555:5555"
     volumes:
     - type: bind   # マウントタイプ
       source: ./omron-sensor-api   # マウント元

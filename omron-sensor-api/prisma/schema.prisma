@@ -1,0 +1,47 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model sensor_data {
+  id                     Int      @id @default(autoincrement())
+  time_measured          String
+  temperature            Float
+  relative_humidity      Float
+  ambient_light          Float
+  barometric_pressure    Float
+  sound_noise            Float
+  eTVOC                  Float
+  eCO2                   Float
+  discomfort_index       Float
+  heat_stroke            Float
+  vibration_information  Int
+  si_value               Float
+  pga                    Float
+  seismic_intensity      Float
+  temperature_flag       Int
+  relative_humidity_flag Int
+  ambient_light_flag     Int
+  barometric_pressure_flag Int
+  sound_noise_flag       Int
+  etvoc_flag             Int
+  eco2_flag              Int
+  discomfort_index_flag  Int
+  heat_stroke_flag       Int
+  si_value_flag          Int
+  pga_flag               Int
+  seismic_intensity_flag Int
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
+}
