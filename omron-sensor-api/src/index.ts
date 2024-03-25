@@ -1,8 +1,10 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { logger } from 'hono/logger'
-import { DBApi } from './sensor/API/SqlHandler'
+import { DBApi } from './sensor/API/DBApi'
 import { SensorData } from './sensor/entity/SensorModel'
+import { InputSensorData, SensorRepository } from './sensor/Repository/SensorRepository'
+import { jsFriendlyJSONStringify } from './Utils/jsonExport'
 
 
 const app = new Hono()
@@ -12,55 +14,55 @@ app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
 
-app.get('/db_test', async (c) => {
-  const db = new DBApi()
-  const result = await db.getSensorModel()
+app.get('/get/sensor', async (c) => {
+  const sensorRepository = new SensorRepository()
 
-  const json = JSON.stringify(result)
-  return c.json(json)
+  const result = await sensorRepository.getSensorModel(
+    c.req.query("area"),
+    new Date(c.req.query("start") || 0),
+    new Date(c.req.query("end") ?? new Date()),
+    parseInt(c.req.query("count") || "100")
+  )
+  return c.text(JSON.stringify(result))
 })
 
-app.post('/db_test', async (c) => {
-  const db = new DBApi()
-  const data:SensorData = {
-    id: 2,
-    time_measured: '2021-08-01 00:00:00',
-    area: 'sysken',
-    temperature: 25.0,
-    relative_humidity: 50.0,
-    ambient_light: 100.0,
-    barometric_pressure: 1013.0,
-    sound_noise: 30.0,
-    eTVOC: 100.0,
-    eCO2: 400.0,
-    discomfort_index: 70.0,
-    heat_stroke: 30.0,
-    vibration_information: 0,
-    si_value: 0,
-    pga: 0,
-    seismic_intensity: 0,
-    temperature_flag: 0,
-    relative_humidity_flag: 0,
-    ambient_light_flag: 0,
-    barometric_pressure_flag: 0,
-    sound_noise_flag: 0,
-    etvoc_flag: 0,
-    eco2_flag: 0,
-    discomfort_index_flag: 0,
-    heat_stroke_flag: 0,
-    si_value_flag: 0,
-    pga_flag: 0,
-    seismic_intensity_flag: 0,
-    created_at: new Date(),
-    updated_at: new Date()
+app.post('/set/sensor', async (c) => {
+
+  const sensorRepository = new SensorRepository()
+  const body = await c.req.json()
+
+  const data: InputSensorData = {
+    time_measured: body.time_measured,
+    area: body.area,
+    temperature: body.temperature,
+    relative_humidity: body.relative_humidity,
+    ambient_light: body.ambient_light,
+    barometric_pressure: body.barometric_pressure,
+    sound_noise: body.sound_noise,
+    eTVOC: body.eTVOC,
+    eCO2: body.eCO2,
+    discomfort_index: body.discomfort_index,
+    heat_stroke: body.heat_stroke,
+    vibration_information: body.vibration_information,
+    si_value: body.si_value,
+    pga: body.pga,
+    seismic_intensity: body.seismic_intensity,
+    temperature_flag: body.temperature_flag,
+    relative_humidity_flag: body.relative_humidity_flag,
+    ambient_light_flag: body.ambient_light_flag,
+    barometric_pressure_flag: body.barometric_pressure_flag,
+    sound_noise_flag: body.sound_noise_flag,
+    etvoc_flag: body.etvoc_flag,
+    eco2_flag: body.eco2_flag,
+    discomfort_index_flag: body.discomfort_index_flag,
+    heat_stroke_flag: body.heat_stroke_flag,
+    si_value_flag: body.si_value_flag,
+    pga_flag: body.pga_flag,
+    seismic_intensity_flag: body.seismic_intensity_flag,
   }
-  const created_at = new Date(data.created_at); // Convert 'created_at' from string to Date
-  data.created_at = created_at;
 
-  const result = await db.setSensorModel(data);
-
-  const json = JSON.stringify(result);
-  return c.json(json)
+  const result = await sensorRepository.setSensorModel(data)
+  return c.text(JSON.stringify(result))
 })
 
 const port = 3000

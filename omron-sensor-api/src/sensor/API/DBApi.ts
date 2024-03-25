@@ -5,9 +5,31 @@ export class DBApi {
 
     private prisma = new PrismaClient();
 
-    getSensorModel(): Promise<SensorData[]> {
+    getAllSensorModel(): Promise<SensorData[]> {
         return new Promise((resolve, reject) => {
             this.prisma.sensor_data.findMany().then((result: SensorData[]) => { // Specify the type of 'result' as 'SensorData[]'
+                resolve(result);
+            });
+        });
+    }
+
+    getSensorModel(
+        area: string = '',
+        startInclusive: Date = new Date(0), 
+        endExclusive: Date = new Date(),
+        count: number = 100
+    ): Promise<SensorData[]> {
+        return new Promise((resolve, reject) => {
+            this.prisma.sensor_data.findMany({
+                where: {
+                    ...(area !== '' && { area: area }),
+                    time_measured: {
+                        gte: startInclusive.toISOString(),
+                        lt: endExclusive.toISOString()
+                    }
+                },
+                take: count
+            }).then((result: SensorData[]) => {
                 resolve(result);
             });
         });
@@ -17,7 +39,7 @@ export class DBApi {
         return new Promise((resolve, reject) => {
             this.prisma.sensor_data.create({
                 data: {
-                    id: data.id,
+                    // id is removed here because it should be auto-generated
                     time_measured: data.time_measured,
                     area: data.area,
                     temperature: data.temperature,
