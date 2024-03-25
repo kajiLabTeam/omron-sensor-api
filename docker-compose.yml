@@ -13,11 +13,17 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_TCP_PORT: 3309
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      retries: 20
+      interval: 5s
+      start_period: 30s
 
   api:   # Service名
-    image: node:21  # Dockerイメージを指定します。
     container_name: api   # Dockerコンテナ名 
-    working_dir: /app  # 作業ディレクトリの指定
+    build:
+      context: .
+      dockerfile: ./docker/api/dockerfile
     ports:
       - "3000:3000"
       - "5555:5555"
@@ -28,4 +34,8 @@ services:
     - /app/node_modules # node_modulesをマウントしない
     tty: true   # コンテナを起動させ続ける。
     command: sh -c "yarn install && yarn run dev"   # コンテナ起動時に実行するコマンド
+    restart: always   # コンテナが停止した場合、自動で再起動する
+    depends_on:
+      mysql:
+        condition: service_healthy
 

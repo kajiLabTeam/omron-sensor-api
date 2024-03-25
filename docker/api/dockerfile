@@ -1,0 +1,14 @@
+# goバージョン
+FROM node:21
+# update upgrade
+RUN apt update && apt upgrade -y
+# appディレクトリの作成
+RUN mkdir /app
+# ワーキングディレクトリの設定
+WORKDIR /app
+# ソースコードのコピー
+COPY ./omron-sensor-api /app
+# yarn install
+RUN yarn install 
+# migrate
+RUN npx prisma migrate dev --name init
