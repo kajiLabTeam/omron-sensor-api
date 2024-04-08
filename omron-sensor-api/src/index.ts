@@ -1,9 +1,9 @@
 import { serve } from '@hono/node-server'
 import { Hono } from 'hono'
 import { logger } from 'hono/logger'
-import { DBApi } from './sensor/API/DBApi'
-import { SensorData } from './sensor/entity/SensorModel'
-import { InputSensorData, SensorRepository } from './sensor/Repository/SensorRepository'
+import { DBApi } from './features/sensor/API/DBApi'
+import { SensorData } from './features/sensor/entity/SensorModel'
+import { InputSensorData, SensorRepository } from './features/sensor/Repository/SensorRepository'
 import { jsFriendlyJSONStringify } from './Utils/jsonExport'
 
 
