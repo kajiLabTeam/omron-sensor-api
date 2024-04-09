@@ -18,7 +18,7 @@ export async function setSensor(c: Context) {
 
     const data: InputSensorData = {
         time_measured: body.time_measured,
-        area: body.area,
+        area_id: body.area_id,
         temperature: body.temperature,
         relative_humidity: body.relative_humidity,
         ambient_light: body.ambient_light,

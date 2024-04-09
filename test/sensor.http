@@ -15,7 +15,7 @@ Accept: application/json
 
 {
     "time_measured": "2021-08-01 00:00:00",
-    "area": "0",
+    "area_id": 0,
     "temperature": 25,
     "relative_humidity": 50,
     "ambient_light": 100,

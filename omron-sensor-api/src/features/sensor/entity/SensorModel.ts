@@ -1,7 +1,7 @@
 export type SensorData = {
     id: number;
     time_measured: string;
-    area: string;
+    area_id: number;
     temperature: number;
     relative_humidity: number;
     ambient_light: number;
@@ -39,7 +39,7 @@ export function toCsv(data: SensorData): string {
     return [
         data.id,
         data.time_measured,
-        data.area,
+        data.area_id,
         data.temperature,
         data.relative_humidity,
         data.ambient_light,

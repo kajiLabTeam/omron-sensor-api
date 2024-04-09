@@ -41,7 +41,7 @@ export class DBApi {
                 data: {
                     // id is removed here because it should be auto-generated
                     time_measured: data.time_measured,
-                    area: data.area,
+                    area_id: data.area_id,
                     temperature: data.temperature,
                     relative_humidity: data.relative_humidity,
                     ambient_light: data.ambient_light,

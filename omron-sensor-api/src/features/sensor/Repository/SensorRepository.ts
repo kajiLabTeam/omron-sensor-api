@@ -4,7 +4,7 @@ import { SensorData } from '../entity/SensorModel';
 type OutputSensorData = {
     id: number;
     time_measured: string;
-    area: string;
+    area_id: number;
     temperature: number;
     relative_humidity: number;
     ambient_light: number;
@@ -23,7 +23,7 @@ type OutputSensorData = {
 
 export type InputSensorData = {
     time_measured: string;
-    area: string;
+    area_id: number;
     temperature: number;
     relative_humidity: number;
     ambient_light: number;
@@ -67,7 +67,7 @@ export class SensorRepository {
             return {
                 id: data.id,
                 time_measured: data.time_measured,
-                area: data.area,
+                area_id: data.area_id,
                 temperature: data.temperature,
                 relative_humidity: data.relative_humidity,
                 ambient_light: data.ambient_light,
@@ -91,7 +91,7 @@ export class SensorRepository {
         const sensorData: SensorData = {
             id: 0,
             time_measured: data.time_measured,
-            area: data.area,
+            area_id: data.area_id,
             temperature: data.temperature,
             relative_humidity: data.relative_humidity,
             ambient_light: data.ambient_light,
