@@ -4,7 +4,8 @@ services:
     container_name: mysql
     image: mysql:latest
     volumes:
-      - ./build/mysql/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
+      - ./build/mysql/init/mysqld_charset.cnf:/etc/mysql/conf.d/my.cnf
+      - ./build/mysql/data:/var/lib/mysql
     ports:
       - "3309:3309"
     expose:
