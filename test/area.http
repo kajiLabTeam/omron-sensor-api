@@ -1,19 +1,19 @@
 
 ### エリアの値を取得する
-GET http://{{host}}/get/area
+GET {{protcol}}://{{host}}/get/area
     ?id=1
 Content-Type: application/json
 Accept: application/json
 
 
 ### エリアの値を取得する
-GET http://{{host}}/get/area/all
+GET {{protcol}}://{{host}}/get/area/all
 Content-Type: application/json
 Accept: application/json
 
 
 ### エリアの値を保存する
-POST http://{{host}}/set/area
+POST {{protcol}}://{{host}}/set/area
     ?name=sysken
 Content-Type: application/json
 

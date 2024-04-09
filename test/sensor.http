@@ -1,6 +1,6 @@
 
 ### センサーの値を取得する
-GET http://{{host}}/get/sensor
+GET {{protcol}}://{{host}}/get/sensor
     ? sensor_id=""
     & start_time=""
     & end_time=""
@@ -9,7 +9,7 @@ Accept: application/json
 
 
 ### センサーの値を保存する
-POST http://{{host}}/set/sensor
+POST {{protcol}}://{{host}}/set/sensor
 Content-Type: application/json
 Accept: application/json
 

@@ -2,9 +2,11 @@
     "rest-client.environmentVariables": {
         "local": {
             "host": "127.0.0.1:3000",
+            "protcol": "http"
         },
         "production": {
             "host": "sensor-api.sysken.net",
+            "protcol": "https"
         }
     }
 }
