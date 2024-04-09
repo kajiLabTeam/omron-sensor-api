@@ -12,3 +12,7 @@ make dev
 ```
 make down
 ```
+
+## APIのチェック方法
+下記記事を確認すること
+https://zenn.dev/akkie1030/articles/vscode-rest-api

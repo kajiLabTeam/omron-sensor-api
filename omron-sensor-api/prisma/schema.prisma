@@ -46,3 +46,10 @@ model sensor_data {
   created_at             DateTime @default(now())
   updated_at             DateTime @updatedAt
 }
+
+model area_data {
+  id                     Int      @id @default(autoincrement())
+  area                   String
+  created_at             DateTime @default(now())
+  updated_at             DateTime @updatedAt
+}

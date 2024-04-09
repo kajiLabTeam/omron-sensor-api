@@ -4,6 +4,9 @@ include .env
 down:
 	docker compose down
 
+up:
+	docker compose up -d
+
 # Dockerコンテナを立ち上げる・ログを表示
 dev:
 	docker compose up -d

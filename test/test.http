@@ -1,0 +1,4 @@
+# ただのTest
+GET http://{{host}}/
+Content-Type: application/json
+Accept: application/json
