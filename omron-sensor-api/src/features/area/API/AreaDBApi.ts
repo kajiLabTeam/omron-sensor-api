@@ -16,9 +16,6 @@ export class AreaDBApi {
     getAreaModel(
         id: number = 0
     ): Promise<AreaModel[]> {
-
-        console.log('id: ', id)
-
         return new Promise((resolve, reject) => {
             this.prisma.area_data.findMany({
                 where: {
