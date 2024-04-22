@@ -14,7 +14,7 @@ Accept: application/json
 
 ### エリアの値を保存する
 POST {{protcol}}://{{host}}/set/area
-    ?name=sysken
+    ?name=kjlb
 Content-Type: application/json
 
 

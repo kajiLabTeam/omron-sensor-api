@@ -14,7 +14,15 @@ export async function getSensor(c: Context) {
 
 export async function setSensor(c: Context) {
     const sensorRepository = new SensorRepository();
-    const body = await c.req.json();
+
+    let body: any;
+    try {
+        body = await c.req.json();
+    } catch (e) {
+        console.error(e);
+        return c.text(JSON.stringify({ error: "Invalid JSON" + e}), { status: 400 });
+    }
+    
 
     const data: InputSensorData = {
         time_measured: body.time_measured,
