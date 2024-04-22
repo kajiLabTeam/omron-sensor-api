@@ -23,7 +23,7 @@ export class DBApi {
             this.prisma.sensor_data.findMany({
                 where: {
                     ...(area !== '' && { area: area }),
-                    time_measured: {
+                    created_at: {
                         gte: startInclusive.toISOString(),
                         lt: endExclusive.toISOString()
                     }

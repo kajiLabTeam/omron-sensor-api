@@ -5,7 +5,7 @@ export async function getSensor(c: Context) {
     const sensorRepository = new SensorRepository();
     const result = await sensorRepository.getSensorModel(
         c.req.query("area"),
-        new Date(c.req.query("start") || 0),
+        new Date(c.req.query("start") || new Date(0)),
         new Date(c.req.query("end") ?? new Date()),
         parseInt(c.req.query("count") || "100")
     );

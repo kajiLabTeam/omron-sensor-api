@@ -55,11 +55,14 @@ export class SensorRepository {
 
     DBApi: DBApi = new DBApi();
 
-    async getSensorModel(area: string = '',
-    startInclusive: Date = new Date(0), 
-    endExclusive: Date = new Date(),
-    count: number = 100
+    async getSensorModel(
+        area: string = '',
+        startInclusive: Date = new Date(0), 
+        endExclusive: Date = new Date(),
+        count: number = 100
     ): Promise<OutputSensorData[]>{
+
+        console.log('getSensorModel', area, startInclusive, endExclusive, count);
 
         const result = await this.DBApi.getSensorModel(area, startInclusive, endExclusive);
 

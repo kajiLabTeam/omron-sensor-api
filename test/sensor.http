@@ -1,9 +1,10 @@
 
 ### センサーの値を取得する
 GET {{protcol}}://{{host}}/get/sensor
-    ? sensor_id=""
-    & start_time=""
-    & end_time=""
+    ? sensor_id=1
+    & start_time=
+    & end_time=
+    & count=
 Content-Type: application/json
 Accept: application/json
 
