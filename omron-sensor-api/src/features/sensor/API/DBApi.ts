@@ -14,10 +14,10 @@ export class DBApi {
     }
 
     getSensorModel(
-        area: string = '',
-        startInclusive: Date = new Date(0), 
-        endExclusive: Date = new Date(),
-        count: number = 100
+        area: string,
+        startInclusive: Date, 
+        endExclusive: Date,
+        count: number
     ): Promise<SensorData[]> {
         return new Promise((resolve, reject) => {
             this.prisma.sensor_data.findMany({

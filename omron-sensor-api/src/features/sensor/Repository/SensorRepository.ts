@@ -64,7 +64,7 @@ export class SensorRepository {
 
         console.log('getSensorModel', area, startInclusive, endExclusive, count);
 
-        const result = await this.DBApi.getSensorModel(area, startInclusive, endExclusive);
+        const result = await this.DBApi.getSensorModel(area, startInclusive, endExclusive, count);
 
         return result.map((data) => {
             return {
