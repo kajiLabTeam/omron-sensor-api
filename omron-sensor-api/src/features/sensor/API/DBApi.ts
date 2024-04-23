@@ -28,6 +28,9 @@ export class DBApi {
                         lt: endExclusive.toISOString()
                     }
                 },
+                orderBy: {
+                    created_at: 'desc'
+                },
                 take: count
             }).then((result: SensorData[]) => {
                 resolve(result);
