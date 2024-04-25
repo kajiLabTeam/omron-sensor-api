@@ -1,0 +1,6 @@
+{
+    "name": "センサーサーバー",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "api",
+    "workspaceFolder": "/app"
+}

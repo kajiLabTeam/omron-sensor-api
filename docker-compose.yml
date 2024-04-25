@@ -30,3 +30,20 @@ services:
     tty: true   # コンテナを起動させ続ける。
     command: sh -c "yarn install && yarn run dev"   # コンテナ起動時に実行するコマンド
 
+  jenkins:
+    build:
+      context: .  # Dockerfileのあるディレクトリ
+      dockerfile: ./build/jenkins/Dockerfile  # Dockerfileの名前
+    container_name: jenkins
+    restart: on-failure
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./build/jenkins/jenkins-data:/var/jenkins_home
+      - ./build/jenkins/jenkins-docker-certs:/certs/client:ro\
+      - type: bind
+        source: "/var/run/docker.sock"
+        target: "/var/run/docker.sock"
+
+
