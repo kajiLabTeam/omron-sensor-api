@@ -69,3 +69,39 @@ export function toCsv(data: SensorData): string {
         data.updated_at,
     ].join(',');
 }
+
+// 空っぽのSensorDataを返す
+export function emptySensorData(): SensorData {
+    return {
+        id: 0,
+        time_measured: "",
+        area_id: 0,
+        temperature: 0,
+        relative_humidity: 0,
+        ambient_light: 0,
+        barometric_pressure: 0,
+        sound_noise: 0,
+        eTVOC: 0,
+        eCO2: 0,
+        discomfort_index: 0,
+        heat_stroke: 0,
+        vibration_information: 0,
+        si_value: 0,
+        pga: 0,
+        seismic_intensity: 0,
+        temperature_flag: 0,
+        relative_humidity_flag: 0,
+        ambient_light_flag: 0,
+        barometric_pressure_flag: 0,
+        sound_noise_flag: 0,
+        etvoc_flag: 0,
+        eco2_flag: 0,
+        discomfort_index_flag: 0,
+        heat_stroke_flag: 0,
+        si_value_flag: 0,
+        pga_flag: 0,
+        seismic_intensity_flag: 0,
+        created_at: new Date(),
+        updated_at: new Date()
+    }
+}

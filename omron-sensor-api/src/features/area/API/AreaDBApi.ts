@@ -15,13 +15,13 @@ export class AreaDBApi {
 
     getAreaModel(
         id: number = 0
-    ): Promise<AreaModel[]> {
+    ): Promise<AreaModel | null> {
         return new Promise((resolve, reject) => {
-            this.prisma.area_data.findMany({
+            this.prisma.area_data.findFirst({
                 where: {
                     id: id 
                 }
-            }).then((result: AreaModel[]) => {
+            }).then((result: AreaModel | null) => {
                 resolve(result);
             });
         });
@@ -32,7 +32,7 @@ export class AreaDBApi {
             this.prisma.area_data.create({
                 data: {
                     // id is removed here because it should be auto-generated
-                    area: data.name,
+                    area: data.area,
                     created_at: data.created_at,
                     updated_at: data.updated_at
                 }
