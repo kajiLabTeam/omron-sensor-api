@@ -1,20 +1,20 @@
 import { PrismaClient } from '@prisma/client'
 import { AreaModel } from '../entity/AreaModel';
 
+const prisma = new PrismaClient();
+
 export class AreaDBApi {
-    
-    private prisma = new PrismaClient();
 
     getAllAreaModel(): Promise<AreaModel[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try {
-                this.prisma.area_data.findMany().then((result: AreaModel[]) => { // Specify the type of 'result' as 'AreaModel[]'
+                await prisma.area_data.findMany().then((result: AreaModel[]) => { // Specify the type of 'result' as 'AreaModel[]'
                     resolve(result);
                 });
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }
@@ -22,9 +22,9 @@ export class AreaDBApi {
     getAreaModel(
         id: number = 0
     ): Promise<AreaModel | null> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try {
-                this.prisma.area_data.findFirst({
+                await prisma.area_data.findFirst({
                     where: {
                         id: id 
                     }
@@ -34,15 +34,15 @@ export class AreaDBApi {
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }
 
     setAreaModel(data: AreaModel): Promise<AreaModel> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try{
-                this.prisma.area_data.create({
+                await prisma.area_data.create({
                     data: {
                         // id is removed here because it should be auto-generated
                         area: data.area,
@@ -55,7 +55,7 @@ export class AreaDBApi {
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }

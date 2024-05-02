@@ -1,20 +1,20 @@
 import { PrismaClient } from '@prisma/client'
 import { SensorData } from '../entity/SensorModel';
 
+const prisma = new PrismaClient();
+
 export class DBApi {
 
-    private prisma = new PrismaClient();
-
     getAllSensorModel(): Promise<SensorData[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try {
-                this.prisma.sensor_data.findMany().then((result: SensorData[]) => { // Specify the type of 'result' as 'SensorData[]'
+                prisma.sensor_data.findMany().then((result: SensorData[]) => { // Specify the type of 'result' as 'SensorData[]'
                     resolve(result);
                 });
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }
@@ -25,9 +25,9 @@ export class DBApi {
         endExclusive: Date,
         count: number
     ): Promise<SensorData[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try{
-                this.prisma.sensor_data.findMany({
+                await prisma.sensor_data.findMany({
                     where: {
                         ...(area !== '' && { area: area }),
                         created_at: {
@@ -45,15 +45,15 @@ export class DBApi {
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }
 
     setSensorModel(data: SensorData): Promise<SensorData> {
-        return new Promise((resolve, reject) => {
+        return new Promise( async (resolve, reject) => {
             try {
-                this.prisma.sensor_data.create({
+                await prisma.sensor_data.create({
                     data: {
                         // id is removed here because it should be auto-generated
                         time_measured: data.time_measured,
@@ -92,7 +92,7 @@ export class DBApi {
             } catch (error) {
                 reject(error);
             } finally {
-                this.prisma.$disconnect();
+                await prisma.$disconnect();
             }
         });
     }
