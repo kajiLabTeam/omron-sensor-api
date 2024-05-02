@@ -6,9 +6,11 @@
     "@hono/node-server": "^1.8.2",
     "@prisma/client": "5.11.0",
     "hono": "^4.1.2",
+    "log4js": "^6.9.1",
     "mysql2": "^3.9.2"
   },
   "devDependencies": {
+    "@types/log4js": "^2.3.5",
     "@types/mysql": "^2.15.26",
     "@types/node": "^20.11.17",
     "prisma": "5.11.0",
