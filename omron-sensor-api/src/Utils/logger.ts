@@ -1,4 +1,4 @@
-import { configure } from "log4js";
+import { configure, getLogger } from "log4js";
 import path from "path";
 import util from "util";
 
@@ -53,4 +53,8 @@ export function settingLogger() {
       },
     },
   });
+}
+
+export const customLogger = (message: string, ...rest: string[]) => {
+  getLogger().info(message, ...rest)
 }

@@ -3,18 +3,14 @@ import { Hono } from 'hono'
 import { logger } from 'hono/logger'
 import { getAllArea, getArea, setArea } from './features/area/Usecase/AreaUsecase'
 import { getSensor, setSensor } from './features/sensor/Usecase/SensorUsecase'
-import { settingLogger } from './Utils/logger'
+import { customLogger, settingLogger } from './Utils/logger'
 import { get } from 'http'
 import { getLogger } from 'log4js'
 
+const app = new Hono()
+
 // ロガーの設定
 settingLogger()
-
-const app = new Hono()
-export const customLogger = (message: string, ...rest: string[]) => {
-  console.log(message, ...rest)
-  getLogger().info(message, ...rest)
-}
 app.use(logger(customLogger))
 
 /**
