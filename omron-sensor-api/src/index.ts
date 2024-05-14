@@ -6,12 +6,24 @@ import { getSensor, setSensor } from './features/sensor/Usecase/SensorUsecase'
 import { customLogger, settingLogger } from './Utils/logger'
 import { get } from 'http'
 import { getLogger } from 'log4js'
+import { cors } from 'hono/cors'
 
 const app = new Hono()
 
 // ロガーの設定
 settingLogger()
 app.use(logger(customLogger))
+
+app.use(
+  cors({
+    origin: ['http://localhost:3000'], // 本番と開発環境のURL
+    allowHeaders: ['X-Custom-Header', 'Upgrade-Insecure-Requests'],
+    allowMethods: ['POST', 'GET', 'OPTIONS'],
+    exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
+    maxAge: 600,
+    credentials: true,
+  })
+)
 
 /**
  * テストで書かれたルート
