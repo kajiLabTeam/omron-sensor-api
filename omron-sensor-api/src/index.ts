@@ -16,7 +16,7 @@ app.use(logger(customLogger))
 
 app.use(
   cors({
-    origin: ['http://localhost:3000','https://omron-sensor-graph.pages.dev','https://hayato2158.github.io/omron-sensor-graph-vite/'], // 本番と開発環境のURL
+    origin: ['http://localhost:3000','https://omron-sensor-graph.pages.dev','http://localhost:5173/','https://hayato2158.github.io'], // 本番と開発環境のURL
     allowHeaders: ['X-Custom-Header', 'Upgrade-Insecure-Requests'],
     allowMethods: ['POST', 'GET', 'OPTIONS'],
     exposeHeaders: ['Content-Length', 'X-Kuma-Revision'],
