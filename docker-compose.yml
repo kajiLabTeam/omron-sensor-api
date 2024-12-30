@@ -30,3 +30,20 @@ services:
     tty: true   # コンテナを起動させ続ける。
     command: sh -c "yarn install && yarn run dev"   # コンテナ起動時に実行するコマンド
 
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    env_file: .env
+    volumes:
+      - ./build/metabase/metabase-data:/metabase-data
+    ports:
+      - 8000:3000
+    tty: true
+    healthcheck:
+      test: curl --fail -I http://localhost:8000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - mysql
+
